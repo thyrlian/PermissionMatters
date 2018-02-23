@@ -9,3 +9,7 @@ This script could help warn developers of any permission change by setting up a 
 ## Precondition
 
 * [Android SDK](https://developer.android.com/studio/index.html#command-tools) ([`apkanalyzer`](https://developer.android.com/studio/command-line/apkanalyzer.html))
+
+## License
+
+Copyright (c) 2018 Jing Li. See the [LICENSE](https://github.com/thyrlian/PermissionMatters/blob/master/LICENSE) file for license rights and limitations (MIT).
