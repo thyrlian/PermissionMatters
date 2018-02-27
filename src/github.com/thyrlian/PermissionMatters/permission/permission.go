@@ -22,3 +22,11 @@ func (p Permission) ToJson() string {
 	}
 	return string(b)
 }
+
+func SerializeListToJson(permissions []Permission) string {
+	b, err := json.Marshal(permissions)
+	if err != nil {
+		log.Fatal(err)
+	}
+	return string(b)
+}
