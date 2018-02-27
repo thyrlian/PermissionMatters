@@ -1,6 +1,7 @@
 package main
 
 import (
+	"./permission"
 	"log"
 	"os"
 	"os/exec"
@@ -10,7 +11,7 @@ import (
 func main() {
 }
 
-func getPermissions(apkFile string) []string {
+func getPermissions(apkFile string) []permission.Permission {
 	// check $ANDROID_HOME
 	androidHomePath := strings.TrimSuffix(os.Getenv("ANDROID_HOME"), "/")
 	if len(androidHomePath) == 0 {
@@ -32,9 +33,10 @@ func getPermissions(apkFile string) []string {
 	if err != nil {
 		log.Fatal(err)
 	}
-	permissions := strings.Split(strings.TrimSpace(string(out)), "\n")
-	for i := range permissions {
-		permissions[i] = strings.TrimSpace(permissions[i])
+	permissionsRaw := strings.Split(strings.TrimSpace(string(out)), "\n")
+	permissions := make([]permission.Permission, len(permissionsRaw))
+	for i := range permissionsRaw {
+		permissions[i] = permission.New(permissionsRaw[i])
 	}
 	return permissions
 }
