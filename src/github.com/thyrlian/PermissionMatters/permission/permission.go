@@ -15,18 +15,18 @@ func New(name string) Permission {
 	return permission
 }
 
-func (p Permission) ToJson() string {
-	b, err := json.Marshal(p)
+func serializeToJson(object interface{}) string {
+	b, err := json.Marshal(object)
 	if err != nil {
 		log.Fatal(err)
 	}
 	return string(b)
 }
 
-func SerializeListToJson(permissions []Permission) string {
-	b, err := json.Marshal(permissions)
-	if err != nil {
-		log.Fatal(err)
-	}
-	return string(b)
+func (p Permission) ToJson() string {
+	return serializeToJson(p)
+}
+
+func ToJsonFromList(permissions []Permission) string {
+	return serializeToJson(permissions)
 }
