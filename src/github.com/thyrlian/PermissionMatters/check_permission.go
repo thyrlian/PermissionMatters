@@ -2,7 +2,7 @@ package main
 
 import (
 	"./permission"
-	"io/ioutil"
+	"./storage"
 	"log"
 	"os"
 	"os/exec"
@@ -40,19 +40,4 @@ func getPermissions(apkFile string) []permission.Permission {
 		permissions[i] = permission.New(permissionsRaw[i])
 	}
 	return permissions
-}
-
-func persistOntoDisk(json string, file string) {
-	err := ioutil.WriteFile(file, []byte(json), 0644)
-	if err != nil {
-		panic(err)
-	}
-}
-
-func loadFromDisk(file string) []permission.Permission {
-	dat, err := ioutil.ReadFile(file)
-	if err != nil {
-		panic(err)
-	}
-	return permission.Deserialize(dat)
 }
