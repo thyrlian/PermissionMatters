@@ -48,3 +48,11 @@ func persistOntoDisk(json string, file string) {
 		panic(err)
 	}
 }
+
+func loadFromDisk(file string) []permission.Permission {
+	dat, err := ioutil.ReadFile(file)
+	if err != nil {
+		panic(err)
+	}
+	return permission.Deserialize(dat)
+}
