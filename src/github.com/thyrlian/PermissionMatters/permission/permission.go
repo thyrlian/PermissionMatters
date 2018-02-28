@@ -30,3 +30,11 @@ func (p Permission) ToJson() string {
 func ToJsonFromList(permissions []Permission) string {
 	return serializeToJson(permissions)
 }
+
+func Deserialize(byt []byte) []Permission {
+	var dat []Permission
+	if err := json.Unmarshal(byt, &dat); err != nil {
+		panic(err)
+	}
+	return dat
+}
