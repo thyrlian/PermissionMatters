@@ -5,9 +5,11 @@ import (
 	"../permission"
 )
 
-const Pass = 0
-const Fail = 1
-const PassWithAttention = 2
+const (
+	Pass              = iota
+	Fail              = iota
+	PassWithAttention = iota
+)
 
 type Conclusion struct {
 	Result int
