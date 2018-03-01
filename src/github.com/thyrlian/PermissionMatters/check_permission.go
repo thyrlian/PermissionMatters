@@ -1,7 +1,6 @@
 package main
 
 import (
-	"./comparator"
 	"./permission"
 	"./storage"
 	"log"
