@@ -2,11 +2,13 @@ package handler
 
 import (
 	"../inspector"
+	"../permission"
+	"../storage"
 	"fmt"
 	"os"
 )
 
-func Process(conclusion inspector.Conclusion) {
+func Process(conclusion inspector.Conclusion, permissions []permission.Permission, file string) {
 	exitCode := 0
 	linebreak := "======================================================================"
 	fmt.Println(linebreak)
@@ -34,7 +36,21 @@ func Process(conclusion inspector.Conclusion) {
 		for i := range less {
 			fmt.Println(fmt.Sprintf("    %s", less[i].Name))
 		}
+		takeSnapshot(permissions, file)
 	}
 	fmt.Println(linebreak)
 	os.Exit(exitCode)
+}
+
+func takeSnapshot(permissions []permission.Permission, file string) {
+	fileExist := true
+	if _, err := os.Stat(file); os.IsNotExist(err) {
+		fileExist = false
+	}
+	storage.PersistOntoDisk(permission.ToJsonFromList(permissions), file)
+	if fileExist {
+		fmt.Println("Snapshot file has been updated.")
+	} else {
+		fmt.Println("Snapshot file has been generated.")
+	}
 }
