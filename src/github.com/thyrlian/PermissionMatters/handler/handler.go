@@ -8,7 +8,7 @@ import (
 	"os"
 )
 
-func Process(conclusion inspector.Conclusion, permissions []permission.Permission, file string) {
+func Process(conclusion inspector.Conclusion) {
 	exitCode := 0
 	linebreak := "======================================================================"
 	fmt.Println(linebreak)
