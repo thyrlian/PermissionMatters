@@ -6,9 +6,9 @@ import (
 )
 
 const (
-	Pass              = iota
-	Fail              = iota
-	PassWithAttention = iota
+	Pass = iota
+	Fail = iota
+	Warn = iota
 )
 
 type Conclusion struct {
@@ -24,7 +24,7 @@ func Check(base []permission.Permission, goal []permission.Permission) Conclusio
 		return Conclusion{Fail, less, more}
 	}
 	if len(less) > 0 {
-		return Conclusion{PassWithAttention, less, more}
+		return Conclusion{Warn, less, more}
 	}
 	return Conclusion{Pass, less, more}
 }

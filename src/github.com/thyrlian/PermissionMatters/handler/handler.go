@@ -18,7 +18,7 @@ func Process(conclusion inspector.Conclusion, permissions []permission.Permissio
 	case inspector.Fail:
 		more := conclusion.More
 		less := conclusion.Less
-		fmt.Println("Warning!")
+		fmt.Println("Failure!")
 		fmt.Println(fmt.Sprintf("\n%d new permission(s) added:", len(more)))
 		for i := range more {
 			fmt.Println(fmt.Sprintf("    %s", more[i].Name))
@@ -30,19 +30,21 @@ func Process(conclusion inspector.Conclusion, permissions []permission.Permissio
 			}
 		}
 		exitCode = 1
-	case inspector.PassWithAttention:
+	case inspector.Warn:
 		less := conclusion.Less
-		fmt.Println(fmt.Sprintf("Brilliant!  You got %d permission(s) removed:\n", len(less)))
+		fmt.Println("Warning!")
+		fmt.Println(fmt.Sprintf("\n%d old permission(s) removed:", len(less)))
 		for i := range less {
 			fmt.Println(fmt.Sprintf("    %s", less[i].Name))
 		}
-		takeSnapshot(permissions, file)
+		fmt.Println("\nA new snapshot needs to be taken.")
+		exitCode = 1
 	}
 	fmt.Println(linebreak)
 	os.Exit(exitCode)
 }
 
-func takeSnapshot(permissions []permission.Permission, file string) {
+func TakeSnapshot(permissions []permission.Permission, file string) {
 	fileExist := true
 	if _, err := os.Stat(file); os.IsNotExist(err) {
 		fileExist = false
