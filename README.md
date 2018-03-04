@@ -15,7 +15,19 @@ This script could help warn developers of any permission change by setting up a 
 
 ## How To Use
 
+```console
+permissionguard <take|scan> -apk <apk> [-snapshot <your_snapshot_file_of_permissions>]
 
+Subject   Description
+-------   -----------
+take      Take snapshot of the given APK's permissions (for the first time or after any permission change)
+scan      Scan the given APK file, compare its permissions with the snapshot
+
+Option    Description
+------    -----------
+apk       The APK file to analyze
+snapshot  The permission snapshot file (default "./permissions.json")
+```
 
 ## License
 
