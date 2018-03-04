@@ -1,7 +1,6 @@
-package analyzer
+package permissionguard
 
 import (
-	"../permission"
 	"bytes"
 	"log"
 	"os"
@@ -9,7 +8,7 @@ import (
 	"strings"
 )
 
-func GetPermissions(apkFile string) []permission.Permission {
+func GetPermissions(apkFile string) []Permission {
 	// check $ANDROID_HOME
 	androidHomePath := strings.TrimSuffix(os.Getenv("ANDROID_HOME"), "/")
 	if len(androidHomePath) == 0 {
@@ -39,9 +38,9 @@ func GetPermissions(apkFile string) []permission.Permission {
 		log.Fatal(string(stderr.Bytes()))
 	}
 	permissionsRaw := strings.Split(strings.TrimSpace(string(stdout.Bytes())), "\n")
-	permissions := make([]permission.Permission, len(permissionsRaw))
+	permissions := make([]Permission, len(permissionsRaw))
 	for i := range permissionsRaw {
-		permissions[i] = permission.New(permissionsRaw[i])
+		permissions[i] = New(permissionsRaw[i])
 	}
 	return permissions
 }

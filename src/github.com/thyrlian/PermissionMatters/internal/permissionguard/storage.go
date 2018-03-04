@@ -1,7 +1,6 @@
-package storage
+package permissionguard
 
 import (
-	"../permission"
 	"io/ioutil"
 )
 
@@ -12,10 +11,10 @@ func PersistOntoDisk(json string, file string) {
 	}
 }
 
-func LoadFromDisk(file string) []permission.Permission {
+func LoadFromDisk(file string) []Permission {
 	dat, err := ioutil.ReadFile(file)
 	if err != nil {
 		panic(err)
 	}
-	return permission.Deserialize(dat)
+	return Deserialize(dat)
 }

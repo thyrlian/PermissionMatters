@@ -1,4 +1,4 @@
-package permission
+package permissionguard
 
 import (
 	"encoding/json"

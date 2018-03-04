@@ -1,21 +1,18 @@
-package handler
+package permissionguard
 
 import (
-	"../inspector"
-	"../permission"
-	"../storage"
 	"fmt"
 	"os"
 )
 
-func Process(conclusion inspector.Conclusion) {
+func Process(conclusion Conclusion) {
 	exitCode := 0
 	linebreak := "======================================================================"
 	fmt.Println(linebreak)
 	switch result := conclusion.Result; result {
-	case inspector.Pass:
+	case Pass:
 		fmt.Println("No permission is changed.")
-	case inspector.Fail:
+	case Fail:
 		more := conclusion.More
 		less := conclusion.Less
 		fmt.Println("Failure!")
@@ -30,7 +27,7 @@ func Process(conclusion inspector.Conclusion) {
 			}
 		}
 		exitCode = 1
-	case inspector.Warn:
+	case Warn:
 		less := conclusion.Less
 		fmt.Println("Warning!")
 		fmt.Println(fmt.Sprintf("\n%d old permission(s) removed:", len(less)))
@@ -44,12 +41,12 @@ func Process(conclusion inspector.Conclusion) {
 	os.Exit(exitCode)
 }
 
-func TakeSnapshot(permissions []permission.Permission, file string) {
+func TakeSnapshot(permissions []Permission, file string) {
 	fileExist := true
 	if _, err := os.Stat(file); os.IsNotExist(err) {
 		fileExist = false
 	}
-	storage.PersistOntoDisk(permission.ToJsonFromList(permissions), file)
+	PersistOntoDisk(ToJsonFromList(permissions), file)
 	if fileExist {
 		fmt.Println("Snapshot file has been updated.")
 	} else {
