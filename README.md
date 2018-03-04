@@ -8,7 +8,12 @@ This script could help warn developers of any permission change by setting up a 
 
 ## Precondition
 
-* [Android SDK](https://developer.android.com/studio/index.html#command-tools) ([`apkanalyzer`](https://developer.android.com/studio/command-line/apkanalyzer.html))
+* [Android SDK](https://developer.android.com/studio/index.html#command-tools) ([`apkanalyzer`](https://developer.android.com/studio/command-line/apkanalyzer.html)) is installed
+* `ANDROID_HOME` environment variable is set (or at least pass in command: `export ANDROID_HOME=<PATH_TO_YOUR_ANDROID_SDK>`)
+
+## How To Use
+
+
 
 ## License
 
