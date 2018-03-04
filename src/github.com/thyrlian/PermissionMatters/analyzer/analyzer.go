@@ -30,11 +30,11 @@ func GetPermissions(apkFile string) []permission.Permission {
 	// build and execute command
 	args := []string{"manifest", "permissions", apkFile}
 	cmd := exec.Command(apkanalyzerFile, args...)
-	out, err := cmd.Output()
+	stdoutStderr, err := cmd.CombinedOutput()
 	if err != nil {
-		log.Fatal(err)
+		log.Fatal(string(stdoutStderr))
 	}
-	permissionsRaw := strings.Split(strings.TrimSpace(string(out)), "\n")
+	permissionsRaw := strings.Split(strings.TrimSpace(string(stdoutStderr)), "\n")
 	permissions := make([]permission.Permission, len(permissionsRaw))
 	for i := range permissionsRaw {
 		permissions[i] = permission.New(permissionsRaw[i])
