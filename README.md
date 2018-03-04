@@ -29,6 +29,66 @@ apk       The APK file to analyze
 snapshot  The permission snapshot file (default "./permissions.json")
 ```
 
+## Results
+
+There are 4 possible cases (`++`, `--`, `++ & --`, `==`), and the result examples are like below:
+
+* permission++
+* => Fail (exit code 1)
+```console
+======================================================================
+Failure!
+
+4 new permission(s) added:
+    android.permission.CAMERA
+    android.permission.FLASHLIGHT
+    android.permission.SEND_SMS
+    com.me.app.myapp.permission.DEADLY_ACTIVITY
+======================================================================
+```
+
+* permission++  &  permission--
+* => Fail (exit code 1)
+```console
+======================================================================
+Failure!
+
+4 new permission(s) added:
+    android.permission.WRITE_EXTERNAL_STORAGE
+    com.sonyericsson.home.permission.BROADCAST_BADGE
+    com.sec.android.provider.badge.permission.READ
+    com.sec.android.provider.badge.permission.WRITE
+
+2 old permission(s) removed:
+    android.permission.CAMERA
+    android.permission.FLASHLIGHT
+======================================================================
+```
+
+* permission--
+* => Warn (exit code 1)
+* TODO: you need to update the snapshot (take a new one)
+```console
+======================================================================
+Warning!
+
+3 old permission(s) removed:
+    android.permission.CAMERA
+    android.permission.FLASHLIGHT
+    com.me.app.myapp.permission.DEADLY_ACTIVITY
+
+A new snapshot needs to be taken.
+======================================================================
+```
+
+* permission==
+* => Pass (exit code 0)
+```console
+======================================================================
+No permission is changed.
+======================================================================
+```
+
 ## License
 
 Copyright (c) 2018 Jing Li. See the [LICENSE](https://github.com/thyrlian/PermissionMatters/blob/master/LICENSE) file for license rights and limitations (MIT).
