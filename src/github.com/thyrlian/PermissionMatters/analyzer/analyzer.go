@@ -2,6 +2,7 @@ package analyzer
 
 import (
 	"../permission"
+	"bytes"
 	"log"
 	"os"
 	"os/exec"
@@ -30,11 +31,14 @@ func GetPermissions(apkFile string) []permission.Permission {
 	// build and execute command
 	args := []string{"manifest", "permissions", apkFile}
 	cmd := exec.Command(apkanalyzerFile, args...)
-	stdoutStderr, err := cmd.CombinedOutput()
+	var stdout, stderr bytes.Buffer
+	cmd.Stdout = &stdout
+	cmd.Stderr = &stderr
+	err := cmd.Run()
 	if err != nil {
-		log.Fatal(string(stdoutStderr))
+		log.Fatal(string(stderr.Bytes()))
 	}
-	permissionsRaw := strings.Split(strings.TrimSpace(string(stdoutStderr)), "\n")
+	permissionsRaw := strings.Split(strings.TrimSpace(string(stdout.Bytes())), "\n")
 	permissions := make([]permission.Permission, len(permissionsRaw))
 	for i := range permissionsRaw {
 		permissions[i] = permission.New(permissionsRaw[i])
