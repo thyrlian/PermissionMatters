@@ -6,17 +6,20 @@ import (
 	"os"
 )
 
+// 2 different types of subcommand
 const (
 	Take = iota
 	Scan = iota
 )
 
+// Order tells what Operation should be performed, and with detailed information
 type Order struct {
 	Operation int
 	Snapshot  string
 	Apk       string
 }
 
+// ParseArgs parse the command line arguments and returns an Order
 func ParseArgs() Order {
 	var operation int
 	var snapshot string

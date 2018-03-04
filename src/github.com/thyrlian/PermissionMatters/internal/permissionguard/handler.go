@@ -5,6 +5,7 @@ import (
 	"os"
 )
 
+// Process takes action on a Conclusion
 func Process(conclusion Conclusion) {
 	exitCode := 0
 	linebreak := "======================================================================"
@@ -41,6 +42,7 @@ func Process(conclusion Conclusion) {
 	os.Exit(exitCode)
 }
 
+// TakeSnapshot saves a slice of permissions to a file (JSON-encoded)
 func TakeSnapshot(permissions []Permission, file string) {
 	fileExist := true
 	if _, err := os.Stat(file); os.IsNotExist(err) {

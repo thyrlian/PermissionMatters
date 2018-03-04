@@ -8,6 +8,7 @@ import (
 	"strings"
 )
 
+// GetPermissions analyzes an APK file, and returns a Permission slice
 func GetPermissions(apkFile string) []Permission {
 	// check $ANDROID_HOME
 	androidHomePath := strings.TrimSuffix(os.Getenv("ANDROID_HOME"), "/")
