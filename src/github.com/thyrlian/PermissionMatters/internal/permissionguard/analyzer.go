@@ -40,7 +40,7 @@ func GetPermissions(apkFile string) []Permission {
 	permissionsRaw := strings.Split(strings.TrimSpace(string(stdout.Bytes())), "\n")
 	permissions := make([]Permission, len(permissionsRaw))
 	for i := range permissionsRaw {
-		permissions[i] = New(permissionsRaw[i])
+		permissions[i] = NewPermission(permissionsRaw[i])
 	}
 	return permissions
 }

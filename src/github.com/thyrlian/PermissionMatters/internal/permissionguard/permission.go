@@ -10,7 +10,7 @@ type Permission struct {
 	Name string
 }
 
-func New(name string) Permission {
+func NewPermission(name string) Permission {
 	permission := Permission{strings.TrimSpace(name)}
 	return permission
 }
