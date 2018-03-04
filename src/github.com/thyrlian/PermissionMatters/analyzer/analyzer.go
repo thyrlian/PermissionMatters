@@ -23,6 +23,10 @@ func GetPermissions(apkFile string) []permission.Permission {
 	} else {
 		log.Fatalf("Can not find apkanalyzer at %s", apkanalyzerFile)
 	}
+	// check the existence of the given APK file
+	if _, err := os.Stat(apkFile); os.IsNotExist(err) {
+		log.Fatalf("The given APK file '%s' doesn't exist", apkFile)
+	}
 	// build and execute command
 	args := []string{"manifest", "permissions", apkFile}
 	cmd := exec.Command(apkanalyzerFile, args...)
