@@ -27,6 +27,10 @@ func ParseArgs() Order {
 	takeApkVal := takeCmd.String("apk", "", "The APK file to analyze.")
 	scanSnapshotVal := scanCmd.String("snapshot", "./permissions.json", "Where to save the permission snapshot file.")
 	scanApkVal := scanCmd.String("apk", "", "The APK file to analyze.")
+	if len(os.Args) < 2 {
+		fmt.Println("Require sub-command: 'take' or 'scan'")
+		os.Exit(2)
+	}
 	switch os.Args[1] {
 	case "take":
 		operation = Take
@@ -36,7 +40,7 @@ func ParseArgs() Order {
 		scanCmd.Parse(os.Args[2:])
 	default:
 		flag.PrintDefaults()
-		fmt.Println("Require sub-command: 'take' or 'scan'")
+		fmt.Println("Supported sub-commands: 'take' or 'scan'")
 		os.Exit(2)
 	}
 	if takeCmd.Parsed() {
