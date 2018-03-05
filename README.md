@@ -13,7 +13,18 @@ This script could help warn developers of any permission change by setting up a 
 * [Android SDK](https://developer.android.com/studio/index.html#command-tools) ([`apkanalyzer`](https://developer.android.com/studio/command-line/apkanalyzer.html)) is installed
 * `ANDROID_HOME` environment variable is set (or at least pass in command: `export ANDROID_HOME=<PATH_TO_YOUR_ANDROID_SDK>`)
 
-## How To Use
+## Build
+
+```console
+scripts/build.sh
+
+# => GOPATH: <YOUR_CLONED_PATH>/PermissionMatters/src
+# => GOBIN:  <YOUR_CLONED_PATH>/PermissionMatters/bin
+
+# => Binary file is generated to: <YOUR_CLONED_PATH>/PermissionMatters/bin/permissionguard
+```
+
+## Play
 
 ```console
 permissionguard <take|scan> -apk <apk> [-snapshot <your_snapshot_file_of_permissions>]
