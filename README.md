@@ -24,6 +24,8 @@ scripts/build.sh
 # => Binary file is generated to: <YOUR_CLONED_PATH>/PermissionMatters/bin/permissionguard
 ```
 
+Or simply grab the built binary [here](https://github.com/thyrlian/PermissionMatters/blob/master/bin/permissionguard).
+
 ## Play
 
 ```console
