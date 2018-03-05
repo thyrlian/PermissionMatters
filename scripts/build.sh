@@ -12,6 +12,6 @@ echo "GOPATH: $GOPATH"
 echo "GOBIN:  $GOBIN"
 BINARY_FILE="permissionguard"
 mkdir -p $PROJECT_DIR/bin
-go build -o $BINARY_FILE $PROJECT_DIR/src/github.com/thyrlian/PermissionMatters/cmd/main.go
+go build -o $BINARY_FILE $PROJECT_DIR/src/cmd/main.go
 mv $BINARY_FILE $PROJECT_DIR/bin/$BINARY_FILE
 echo -e "\nBinary file is generated to: $GOBIN/$BINARY_FILE"
