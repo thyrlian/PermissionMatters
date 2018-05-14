@@ -1,6 +1,7 @@
 # PermissionMatters
 
 [![Go Report Card](https://goreportcard.com/badge/github.com/thyrlian/PermissionMatters)](https://goreportcard.com/report/github.com/thyrlian/PermissionMatters)
+[![Android开发技术周报](https://img.shields.io/badge/Android%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF%E5%91%A8%E6%8A%A5-%23179-yellowgreen.svg)](https://androidweekly.io/android-dev-weekly-issue-179/)
 
 Check your Android application's permission changes
 
